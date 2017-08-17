@@ -1,0 +1,24 @@
+
+{% block content %}
+    <table>
+    <tr>
+        <td>email :</td><td>    dhimantarun19@gmail.com</td>
+    </tr>
+    <tr>
+        <td>Facebook :</td><td> dhimantaa</td>
+    </tr>
+    <tr>
+        <td>YouTube :</td><td>  dhimanta Gaming</td>
+    </tr>
+    </table>
+
+    <h2>Contact Us</h2>
+    <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+        <div class="form-actions">
+            <button type="submit">Send</button>
+        </div>
+    </form>
+
+{% endblock %}
