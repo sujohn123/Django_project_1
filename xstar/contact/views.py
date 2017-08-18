@@ -15,10 +15,14 @@ def index(request):
 def contact(request):
 	form = ContactForm(request.POST or None)
 	if request.POST and form.is_valid():
+		phone1 = form.cleaned_data['phone']
+		email1 = form.cleaned_data['email']
 		name1 = form.cleaned_data['name']
-        email1 = form.cleaned_data['email']
-        phone1 = form.cleaned_data['phone']
-	c=contactdetail(name=name1,email=email1,phone=phone1)
-	c.save()
+		if not(contactdetail.objects.filter(phone=phone1,name=name1)):
+			c=contactdetail(phone=phone1,email=email1,name=name1)
+			c.save()
+			return HttpResponse('Success! Thank you for your message.')
+		else:
+			return HttpResponse('You are already registered, mate!!')
 	
 	return render(request, "xstars/basic.html",{'form': form})
